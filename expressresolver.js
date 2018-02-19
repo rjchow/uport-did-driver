@@ -18,5 +18,5 @@ app.get('/1.0/dids/*', function (req, res) {
 })
 
 var server = app.listen(8081, function () {
-  console.log("Tutorial app running...")
+  console.log("Tutorial2 app running...")
 })

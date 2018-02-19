@@ -1,0 +1,8 @@
+version: "3"
+services:
+    driver-did-uport:
+        build:
+            context: .
+            dockerfile: ./Dockerfile-driver-did-uport
+        ports:
+            - "8081:8081"
