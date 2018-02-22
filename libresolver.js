@@ -1,12 +1,12 @@
 let uportLiteGet = require('uport-lite')({
   networks: {
     '0x16962': {
-      rpcUrl: '54.179.188.40',
-      registry: '0xeecd5cc4e10f92ab7b1af41b0e9c19983e6cf4be'
+      rpcUrl: 'http://54.179.188.40:8545',
+      registry: '0x6e3037af2f9019e66baa44cd7889cb1caa2c66fd'
     },
     '0x1691': {
       rpcUrl: 'http://127.0.0.1:7545',
-      registry: '0x0d8cc4b8d15d4c3ef1d70af0071376fb26b5669b'
+      registry: '0x2467636bea0f3c2441227eedbffac59f11d54a80'
     }
   }
 })
@@ -27,12 +27,18 @@ let uportResolveLegacy = (did, callback) => {
   }
   let mnid = did.slice(10)
 
-  uportLiteGet(mnid, (err, doc) => {    
+  console.log(mnid)
+  uportLiteGet(mnid, (err, doc) => {
+    try {
     let pubKey = doc.publicKey.slice(2)
     var didDoc = didDocumentTemplate
     didDoc.authenticationCredential[0].id = did + "#auth"
     didDoc.authenticationCredential[0].publicKeyHex = pubKey
     callback(null, didDoc)
+    } 
+    catch(error) {
+      callback(error, null)
+    }
   })
 }
 

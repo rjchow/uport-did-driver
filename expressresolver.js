@@ -12,11 +12,16 @@ app.get('/1.0/dids/*', function (req, res) {
   console.log(did)
 
   resolver.uportResolveLegacy(did, (err, doc) => {
-    res.send(doc)
+    if (err) {
+      res.status(500)
+      res.send("Internal Server Error")
+    } else { 
+      res.send(doc)
+    }
   })
 
 })
 
 var server = app.listen(8081, function () {
-  console.log("Tutorial2 app running...")
+  console.log("uPort resolver running...")
 })
